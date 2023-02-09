@@ -1,0 +1,41 @@
+.blocklyToolboxDiv {
+    background-color: #222;
+    color: #fff;
+}
+
+.blocklySvg {
+    background-color: #111;
+}
+
+.blocklyMainBackground {
+    stroke: none;
+    fill: url("#blocklyGridPattern1865444634066281");
+
+}
+
+.blocklyScrollbarBackground:hover+.blocklyScrollbarHandle, .blocklyScrollbarHandle:hover {
+    fill: #555;
+}
+
+.blocklyScrollbarHandle {
+    fill: #444;
+}
+
+.blocklyFlyoutBackground {
+    fill: #333;
+}
+
+.file-system {
+    background-color: #222;
+    color: #fff;
+}
+
+.make-code {
+    background-color: #333;
+    color: #fff;
+    border: 1px solid #444;
+}
+
+.make-code:hover {
+    background-color: #444;
+}

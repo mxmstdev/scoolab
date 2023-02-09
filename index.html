@@ -1,0 +1,394 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Link some styles (with light theme default right now) -->
+    <link rel="stylesheet" href="./css/main.css">
+    <link rel="stylesheet" href="./css/light.css">
+
+    <!-- Link toolbar and workspace XMLs (not done) -->
+    <!-- <link rel="import" href="./blockly_files/toolbar.html"> -->
+
+    <!-- Connect blockly files -->
+    <script src="./blockly/blockly_compressed.js"></script>
+    <script src="./blockly/blocks_compressed.js"></script>
+    <script src="./blockly/javascript_compressed.js"></script>
+    <script src="./blockly/msg/js/en.js"></script>
+
+    <!-- Define blocks -->
+    <script src="./blockly_files/blocks.js"></script>
+
+
+    <script src="./js/login.js"></script>
+
+    <!-- Connect firs (start) block -->
+    <!-- <script src="./blockly_files/workspace.js"></script> -->
+
+    <!-- Connect blocks functions -->
+    <script src="./blockly_files/blocksFunc.js"></script>
+
+    <!-- Link some pretty fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;900&family=Rubik:wght@300;400;600&display=swap"
+          rel="stylesheet">
+
+    <title>Конструктор исследования</title>
+</head>
+
+
+<body>
+<div class="no-mobile only-mobile">
+    <div class="nm-centered-div">
+        <h1 class="nm-main-title">Простите,</h1>
+        <h2 class="nm-sec-title">но конструктор исследования пока не работает на мобильных устройствах</h2>
+        <p>Зайдите на <a href="https://rd.scoolab.ru/">rd.scoolab.ru</a> с ПК</p>
+    </div>
+</div>
+<div class="log-screen">
+    <div class="log-centered-div">
+        <h1 class="log-main-title">Войти</h1>
+        <h2 class="log-sec-title">в конструктор исследования</h2>
+        <input type="text" placeholder="Логин" id="login" class="log-input">
+        <input type="password" placeholder="Пароль" id="pwd" class="log-input">
+        <button id="checkBtn" onclick="checkPwd();">Войти</button>
+    </div>
+</div>
+<section id="blocklyContainer">
+    <div id="blocklyDiv"></div>
+</section>
+<div class="file-system">
+    <h1>Файловая система</h1>
+    <!-- <h3>ваша файловая система,</h3> -->
+    <p>Подключите устройство</p>
+</div>
+<button class="make-code" onclick="alert(Blockly.JavaScript.workspaceToCode(workspace).slice(0, -2));">Код</button>
+</body>
+
+
+<!-- Toolbox XML -->
+<!-- TODO: move this XML to another file -->
+<xml id="toolbox" style="display: none">
+    <category name="Основные" colour="#9fa55b">
+        <block type="start"/>
+        </block>
+        <block type="end"/>
+        </block>
+        <block type="sc_if"/>
+        </block>
+        <block type="sc_if_else"/>
+        </block>
+        <block type="loop_for">
+            <value name="forCount">
+                <block type="math_number">
+                    <field name="NUM">5</field>
+                </block>
+            </value>
+        </block>
+        <block type="loop_while">
+            <field name="loopType">while</field>
+        </block>
+        <block type="delay"/>
+        </block>
+    </category>
+    <category name="Математика" colour="#5b67a5">
+        <block type="math_number">
+            <field name="NUM">0</field>
+        </block>
+        <block type="sc_math_main">
+            <field name="sign">+</field>
+            <value name="firstNum">
+                <shadow type="math_number">
+                    <field name="NUM">1</field>
+                </shadow>
+            </value>
+            <value name="secondNum">
+                <shadow type="math_number">
+                    <field name="NUM">1</field>
+                </shadow>
+            </value>
+        </block>
+        <block type="sc_math_sqrt">
+            <value name="base">
+                <shadow type="math_number">
+                    <field name="NUM">4</field>
+                </shadow>
+            </value>
+        </block>
+        <block type="sc_math_tryg">
+            <field name="type">
+                <block type="sc_math_tryg">
+                    <field name="type">sin</field>
+                </block>
+            </field>
+        </block>
+        <block type="sc_math_spec_num">
+            <field name="type">pi</field>
+        </block>
+        <block type="sc_math_random">
+            <field name="number_type">int</field>
+            <value name="from_number">
+                <shadow type="math_number">
+                    <field name="NUM">1</field>
+                </shadow>
+            </value>
+            <value name="to_number">
+                <shadow type="math_number">
+                    <field name="NUM">10</field>
+                </shadow>
+            </value>
+        </block>
+        <block type="sc_math_deg_rad">
+            <field name="convert_to">deg</field>
+            <field name="convert_from">rad</field>
+            <value name="convert_val">
+                <shadow type="math_number">
+                    <field name="NUM">180</field>
+                </shadow>
+            </value>
+        </block>
+    </category>
+    <category name="Логика" colour="330">
+        <block type="sc_logic_boolean">
+            <value name="BOOL">true</value>
+        </block>
+        <block type="sc_logic_main_compare">
+            <field name="sign">==</field>
+            <value name="first_statement">
+                <shadow type="math_number">
+                    <field name="NUM">10</field>
+                </shadow>
+            </value>
+            <value name="second_statement">
+                <shadow type="math_number">
+                    <field name="NUM">20</field>
+                </shadow>
+            </value>
+        </block>
+        <block type="sc_logic_and_or">
+            <field name="sign">==</field>
+            <value name="first_statement">
+                <shadow type="sc_logic_boolean">
+                    <field name="BOOL">true</field>
+                </shadow>
+            </value>
+            <value name="second_statement">
+                <shadow type="sc_logic_boolean">
+                    <field name="BOOL">false</field>
+                </shadow>
+            </value>
+        </block>
+        <block type="sc_logic_not">
+            <value name="statement">
+                <shadow type="sc_logic_boolean">
+                    <field name="BOOL">true</field>
+                </shadow>
+            </value>
+        </block>
+    </category>
+    <category name="Строки" colour="#5ba55b">
+        <block type="text">
+            <field name="TEXT"></field>
+        </block>
+        <block type="sc_string_numtostr">
+            <field name="num_type">int</field>
+            <value name="num">
+                <shadow type="math_number">
+                    <field name="NUM">10</field>
+                </shadow>
+            </value>
+        </block>
+        <block type="sc_string_append">
+            <value name="first_str">
+                <shadow type="text">
+                    <field name="TEXT">Hello,</field>
+                </shadow>
+            </value>
+            <value name="second_str">
+                <shadow type="text">
+                    <field name="TEXT">World</field>
+                </shadow>
+            </value>
+        </block>
+    </category>
+    <category name="Analog" colour="#a5745b">
+        <block type="analog_write">
+            <field name="port">1</field>
+        </block>
+        <block type="analog_read">
+            <field name="port">1</field>
+        </block>
+    </category>
+    <category name="Digital" colour="#5b80a5">
+        <block type="digital_write">
+            <field name="action">on</field>
+            <field name="port">1</field>
+        </block>
+        <block type="sc_digital_prowrite">
+            <field name="port">1</field>
+            <value name="value">
+                <shadow type="sc_logic_boolean">
+                    <field name="BOOL">TRUE</field>
+                </shadow>
+            </value>
+        </block>
+        <block type="digital_read">
+            <field name="port">1</field>
+        </block>
+    </category>
+    <category name="I2C" colour="#5ba55b"/>
+    <block type="sc_i2c_begin">
+        <value name="addr">
+            <shadow type="math_number">
+                <field name="NUM"></field>
+            </shadow>
+        </value>
+    </block>
+    <block type="sc_i2c_write">
+        <value name="val">
+            <shadow type="math_number">
+                <field name="NUM"></field>
+            </shadow>
+        </value>
+    </block>
+    <block type="sc_i2c_read"></block>
+    <block type="sc_i2c_available"></block>
+    </category>
+    <category name="SPI" colour="#745ba5"/>
+    <block type="sc_spi_ss">
+        <value name="port">
+            <shadow type="math_number">
+                <field name="NUM"></field>
+            </shadow>
+        </value>
+    </block>
+    <block type="sc_spi_begintrans"></block>
+    <block type="sc_spi_endtrans"></block>
+    <block type="sc_spi_transfer">
+        <value name="data">
+            <shadow type="math_number">
+                <field name="NUM"></field>
+            </shadow>
+        </value>
+    </block>
+    </category>
+    <category name="UART" colour="#a55b80">
+        <block type="sc_serial_begin">
+            <value name="bod">
+                <shadow type="math_number">
+                    <field name="NUM">9600</field>
+                </shadow>
+            </value>
+        </block>
+        <block type="sc_serial_flush"></block>
+        <block type="sc_serial_print">
+            <value name="text">
+                <shadow type="text">
+                    <field name="TEXT"></field>
+                </shadow>
+            </value>
+        </block>
+        <block type="sc_serial_println">
+            <value name="text">
+                <shadow type="text">
+                    <field name="TEXT"></field>
+                </shadow>
+            </value>
+        </block>
+        <block type="sc_serial_read"></block>
+        <block type="sc_serial_available"></block>
+        <block type="sc_serial_find">
+            <value name="target">
+                <shadow type="text">
+                    <field name="TEXT"></field>
+                </shadow>
+            </value>
+        </block>
+        <block type="sc_serial_finduntil">
+            <value name="target">
+                <shadow type="text">
+                    <field name="TEXT"></field>
+                </shadow>
+            </value>
+        </block>
+        <block type="sc_serial_parsefloat"></block>
+        <block type="sc_serial_parseint"></block>
+    </category>
+    <!--<category name="Переменные" colour="#5ba58c" custom="VARIABLE"/>
+    </category>-->
+</xml>
+
+
+<!-- Some another XML for workspace -->
+<!-- TODO: move this to another file -->
+<xml xmlns="https://developers.google.com/blockly/xml" id="workspaceBlocks" style="display: none">
+    <block type="start" id="zqs,:W9^S_fp=9ce2#`4" x="213" y="163"></block>
+</xml>
+
+
+<script>
+    Blockly.defineBlocksWithJsonArray(blocksJSON);
+
+    Blockly.FieldAngle.WRAP = 180;
+
+    var toolbox = document.getElementById("toolbox");
+
+    var options = {
+        toolbox: toolbox,
+        collapse: true,
+        comments: true,
+        disable: true,
+        maxBlocks: Infinity,
+        trashcan: true,
+        horizontalLayout: false,
+        toolboxPosition: 'start',
+        css: true,
+        media: 'https://blockly-demo.appspot.com/static/media/',
+        rtl: false,
+        scrollbars: true,
+        sounds: true,
+        oneBasedIndex: true,
+        grid: {
+            spacing: 25,
+            length: 1,
+            colour: '#888',
+            snap: false
+        },
+        zoom: {
+            controls: true,
+            wheel: true,
+            startScale: 1,
+            maxScale: 3,
+            minScale: 0.3,
+            scaleSpeed: 1.2
+        }
+    };
+
+    /* Inject your workspace */
+    var workspace = Blockly.inject(document.getElementById('blocklyDiv'), options);
+
+    /* Load Workspace Blocks from XML to workspace. Remove all code below if no blocks to load */
+
+    /* TODO: Change workspace blocks XML ID if necessary. Can export workspace blocks XML from Workspace Factory. */
+    var workspaceBlocks = document.getElementById("workspaceBlocks");
+
+    /* Load blocks to workspace. */
+    Blockly.Xml.domToWorkspace(workspaceBlocks, workspace);
+
+
+    document.querySelectorAll('.log-input').forEach(elt => {
+        elt.addEventListener('keyup', (e) => {
+            if (e.code == 'Enter' || e.code == 'NumpadEnter') {
+                e.preventDefault();
+                checkPwd();
+            }
+        })
+    })
+</script>
+
+
+</html>

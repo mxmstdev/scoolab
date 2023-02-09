@@ -1,0 +1,189 @@
+* {
+    margin: 0;
+    padding: 0;
+    font-family: "Inter", sans-serif !important;
+    color: var(--main-text);
+}
+
+body {
+    display: flex;
+    flex-direction: row;
+}
+
+.no-mobile {
+    position: fixed;
+    z-index: 200000;
+    background-color: var(--main-bg);
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.nm-centered-div {
+    width: 80vw;
+    display: flex;
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+
+.nm-main-title {
+    font-size: 3rem;
+    font-weight: 900;
+    margin-bottom: 10px;
+}
+
+.nm-sec-title {
+    font-size: 1.2rem;
+    font-weight: 300;
+    margin-top: 5px;
+    margin-bottom: 40px;
+}
+
+.log-screen {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: 100000;
+    background-color: var(--main-bg);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.log-centered-div {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.log-main-title {
+    font-size: 4rem;
+    font-weight: 900;
+}
+
+.log-sec-title {
+    font-size: 1.5rem;
+    font-weight: 300;
+    margin-top: 5px;
+    margin-bottom: 40px;
+}
+
+.log-centered-div input {
+    border-radius: 10px;
+    font-size: 1.3rem;
+    padding: .6rem;
+    margin-bottom: 10px;
+    border: 1px solid #ddd;
+    outline: none;
+    width: 20rem;
+}
+
+.log-centered-div input:focus {
+    border: 1px solid #888;
+}
+
+.log-centered-div button {
+    margin-top: 30px;
+    box-sizing: border-box;
+    font-size: 1.6rem;
+    /* background-color: rgb(184, 228, 255); */
+    background-color: transparent;
+    padding: .8rem;
+    border: 1px solid #888;
+    font-weight: 300;
+    width: 10rem;
+    border-radius: 10px;
+    transition: .3s;
+}
+
+.log-centered-div button:hover {
+    background-color: rgb(230, 249, 255);
+}
+
+#blocklyContainer {
+    position: relative;
+    width: 100%;
+    height: 100vh;
+}
+
+#blocklyDiv {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+}
+
+.file-system {
+    width: 500px;
+    height: 100vh;
+    text-align: center;
+    align-items: center;
+    justify-content: center;
+    display: flex;
+    flex-direction: column;
+    background-color: var(--main-bg);
+}
+
+.blocklyTreeLabel {
+    font-weight: 300;
+}
+
+.geras-renderer.classic-theme .blocklyText, .geras-renderer.classic-theme .blocklyFlyoutLabelText {
+    font-weight: 300;
+}
+
+.blocklyTreeRow {
+    height: 27px;
+}
+
+.file-system > h1 {
+    font-size: 2rem;
+    font-weight: 900;
+}
+
+.file-system > h3 {
+    font-size: 1.3rem;
+    font-weight: 600;
+}
+
+.file-system > p {
+    margin-top: 10px;
+    font-weight: 300;
+}
+
+.make-code {
+    position: absolute;
+    right: 30px;
+    top: 30px;
+    padding: 20px;
+    border-radius: 20px;
+    border: 1px solid #bbb;
+    background-color: #f8f8f8;
+    font-family: "Inter", sans-serif;
+    cursor: pointer;
+}
+
+.make-code:hover {
+    background-color: #eee;
+}
+
+
+@media screen and (min-width: 800px) {
+    .only-mobile {
+        display: none;
+    }
+}

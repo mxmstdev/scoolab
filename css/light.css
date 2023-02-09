@@ -1,0 +1,21 @@
+:root {
+    --main-bg: #fff;
+    --main-text: #000;
+}
+
+.file-system {
+    background-color: #fff;     
+}
+
+.blocklySvg {
+    background-color: #f0f0f0;
+}
+
+.blocklyToolboxDiv {
+    background-color: #fff;
+    border-right: 1px solid #ddd;
+}
+
+.blocklyFlyoutBackground {
+    fill: #fdfdfd;
+}
